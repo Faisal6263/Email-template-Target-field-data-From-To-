@@ -1,0 +1,63 @@
+
+Here is the link for the Target field data to be inserted 
+
+https://www.inogic.com/blog/2020/09/power-automate-send-an-email-using-the-email-template-part-1/
+
+------------------------------------------------------------------------------------------------------------------------>
+
+Target: This is the parameter where we need to pass the sender and recipients of the email in JSON format. Below is the JSON structure
+
+{
+
+“email_activity_parties”: [
+{
+“partyid_<entitylogicalname>@odata.bind”: “/<entitysetname>(<guid of the record>)”,
+“participationtypemask”: 1
+},
+{
+“partyid_<entitylogicalname>@odata.bind”: “/<entitysetname>(<guid of the record>)”,
+“participationtypemask”: 2
+}
+],
+“@@odata.type”: “Microsoft.Dynamics.CRM.email”
+
+}
+
+                Participation Type Mask
+
+From ---------> 1
+To --------->   2
+CC --------->   3
+BCC --------->  4
+
+
+------------------------------------------------------------------------------------------------------------------------>
+
+{
+“email_activity_parties”: [
+{
+“partyid_systemuser@odata.bind”: “/systemusers(@{triggerOutputs()?[‘body/_ownerid_value’]})”,
+“participationtypemask”: 1
+},
+{
+“partyid_lead@odata.bind”: “/leads(@{triggerOutputs()?[‘body/leadid’]})”,
+“participationtypemask”: 2
+},
+
+{
+“partyid_systemuser@odata.bind”: “/systemusers(c308eef1-1de7-ea11-a817-000d3a0a82a5)”,
+“participationtypemask”: 3
+},
+{
+“addressused”: “sam@test.com”,
+“participationtypemask”: 4
+},
+
+{
+“addressused”: “john@test.com”,
+“participationtypemask”: 4
+}
+
+],
+“@@odata.type”: “Microsoft.Dynamics.CRM.email”
+}
